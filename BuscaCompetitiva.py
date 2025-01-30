@@ -80,15 +80,10 @@ def busca_competitiva(grafo, inicio, objetivo, heuristica):
             return caminho_guloso, custo_guloso
         else:
             return caminho_a_estrela, custo_a_estrela
-    elif caminho_guloso:
-        return caminho_guloso, custo_guloso
-    elif caminho_a_estrela:
-        return caminho_a_estrela, custo_a_estrela
-    else:
-        return None, float('inf')
+    
 
 # Execução do algoritmo de busca competitiva
-inicio = 'A'
+inicio = 'C'
 objetivo = 'H'
 
 melhor_caminho, melhor_custo = busca_competitiva(grafo, inicio, objetivo, heuristica)
