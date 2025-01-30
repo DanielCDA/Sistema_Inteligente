@@ -1,5 +1,3 @@
-from collections import deque
-
 # Definindo o grafo como um dicionário de listas de adjacência
 grafo = {
     'A': ['B'],
@@ -12,21 +10,21 @@ grafo = {
     'H': ['F', 'G']
 }
 
-def bfs(grafo, inicio, objetivo):
-    fila = deque([(inicio, [inicio])])
+def dfs(grafo, inicio, objetivo):
+    pilha = [(inicio, [inicio])]
     visitados = set()
 
-    while fila:
-        no, caminho = fila.popleft()
+    while pilha:
+        no, caminho = pilha.pop()
         if no == objetivo:
             return caminho
         if no not in visitados:
             visitados.add(no)
-            for vizinho in grafo[no]:
-                fila.append((vizinho, caminho + [vizinho]))
+            for vizinho in reversed(grafo[no]):  # Revertendo para manter a ordem correta
+                pilha.append((vizinho, caminho + [vizinho]))
 
     return None
 
-# Executando a BFS
-caminho = bfs(grafo, 'A', 'H')
-print("Caminho ótimo:", caminho)
+# Executando a DFS
+caminho = dfs(grafo, 'H', 'A')
+print("Caminho encontrado:", caminho)
